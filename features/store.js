@@ -1,8 +1,8 @@
 import { configureStore } from "@reduxjs/toolkit";
-import userInfoReducer from "./userInfo/userInfoSlice";
+import deviceReducer from "./deviceSlice/deviceSlice";
 
 export const store = configureStore({
   reducer: {
-    userInfo: userInfoReducer,
+    device: deviceReducer,
   },
 });

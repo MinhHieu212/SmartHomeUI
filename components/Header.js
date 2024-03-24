@@ -3,11 +3,14 @@ import React from "react";
 import Feather from "react-native-vector-icons/Feather";
 import moment from "moment";
 import { useNavigation } from "@react-navigation/native";
+import { useSelector } from "react-redux";
+import { setlectNumberDevice } from "../features/deviceSlice/deviceSlice";
 
 const Header = ({ name }) => {
-  const naigation = useNavigation();
+  const navigation = useNavigation();
+  const numberDevice = useSelector(setlectNumberDevice);
   return (
-    <View className="w-full h-[14vh] bg-white pt-[4vh] shadow-lg shadow-blue-900  rounded-2xl items-center flex-row justify-between px-4 mb-3">
+    <View className="w-full h-[11vh] bg-white shadow-lg pt-[1vh] shadow-blue-900  rounded-2xl items-center flex-row justify-between px-4">
       <View className="w-[50] h-[50] items-center justify-center rounded-full">
         <View className="w-[43] h-[43] rounded-full shadow-lg">
           <Image
@@ -24,12 +27,14 @@ const Header = ({ name }) => {
         <Text className="text-2xl font-bold">{name}</Text>
         <View className="flex-1 flex-row items-center mt-[-5] space-x-1">
           <View className="bg-[#1BE08D] w-3 h-3 rounded-full"></View>
-          <Text className="text-sm text-[#07123C] "> 10 device running </Text>
+          <Text className="text-sm text-[#07123C] ">
+            {numberDevice} device running
+          </Text>
         </View>
       </View>
 
       <View className="w-[50] h-[50] items-center justify-center rounded-full">
-        <TouchableOpacity onPress={() => naigation.navigate("Notice")}>
+        <TouchableOpacity onPress={() => navigation.navigate("Notice")}>
           <Feather name="bell" color={"black"} size={26} />
         </TouchableOpacity>
       </View>

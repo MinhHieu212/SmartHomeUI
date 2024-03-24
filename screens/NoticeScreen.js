@@ -3,31 +3,21 @@ import {
   Text,
   View,
   SafeAreaView,
+  StatusBar,
   ScrollView,
-  TouchableOpacity,
-  Switch,
 } from "react-native";
-import React, { useContext, useState } from "react";
-import { AuthContext } from "../utils/AuthContext";
+import React from "react";
 import Header from "../components/Header";
-import { useDispatch, useSelector } from "react-redux";
-import { selectUserName, setName } from "../features/userInfo/userInfoSlice";
-import { RightArrow } from "../assets/Icons";
-import { useNavigation } from "@react-navigation/native";
 
 const NoticeScreen = () => {
-  const { logout } = useContext(AuthContext);
-
-  const [isEnabled, setIsEnabled] = useState(true);
-
   return (
-    <SafeAreaView className="flex-1 mb-[70]">
+    <SafeAreaView className="flex-1 bg-white mb-[70]">
+      <StatusBar barStyle={"opaque"}></StatusBar>
       <Header name="Notice"></Header>
       <ScrollView>
-        <View className="flex-1 pb-10 px-3">
-          <Text className="text-xl font-bold mb-5">Account</Text>
-          <Text className="text-2xl text-blue-500 font-bold">
-            Notice Screen
+        <View className="flex-1 pb-10 px-3 mt-3 items-center justify-center h-[70vh]">
+          <Text className="text-2xl font-bold text-blue-700">
+            Notice Details Screen
           </Text>
         </View>
       </ScrollView>

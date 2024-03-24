@@ -10,19 +10,19 @@ import {
 import React, { useContext, useState } from "react";
 import { AuthContext } from "../utils/AuthContext";
 import Header from "../components/Header";
-import { useDispatch, useSelector } from "react-redux";
-import { selectUserName, setName } from "../features/userInfo/userInfoSlice";
 import { RightArrow } from "../assets/Icons";
+import { StatusBar } from "react-native";
 
 const SettingScreen = () => {
   const { logout } = useContext(AuthContext);
-
-  const [isEnabled, setIsEnabled] = useState(true);
+  const [notice, setNotice] = useState(true);
+  const [calling, setCalling] = useState(true);
   return (
-    <SafeAreaView className="flex-1 mb-[70]">
+    <SafeAreaView className="flex-1 bg-white mb-[70]">
+      <StatusBar barStyle={"opaque"}></StatusBar>
       <Header name="Settings"></Header>
       <ScrollView>
-        <View className="flex-1 pb-10 px-3">
+        <View className="flex-1 pb-10 px-3 mt-3 ">
           <Text className="text-xl font-bold mb-5">Account</Text>
           <View className="m-3 my-5 gap-y-5 ">
             <View className="flex-row items-center justify-between">
@@ -55,8 +55,8 @@ const SettingScreen = () => {
                   trackColor={{ false: "#D4E2FD", true: "#2666DE" }}
                   thumbColor={"#f4f3f4"}
                   ios_backgroundColor="#3e3e3e"
-                  onValueChange={() => setIsEnabled(!isEnabled)}
-                  value={isEnabled}
+                  onValueChange={() => setNotice(!notice)}
+                  value={notice}
                   style={{ transform: [{ scaleX: 1.3 }, { scaleY: 1.3 }] }}
                 />
               </View>
@@ -70,8 +70,8 @@ const SettingScreen = () => {
                   trackColor={{ false: "#D4E2FD", true: "#2666DE" }}
                   thumbColor={"#f4f3f4"}
                   ios_backgroundColor="#3e3e3e"
-                  onValueChange={() => setIsEnabled(!isEnabled)}
-                  value={isEnabled}
+                  onValueChange={() => setCalling(!calling)}
+                  value={calling}
                   style={{ transform: [{ scaleX: 1.3 }, { scaleY: 1.3 }] }}
                 />
               </View>
