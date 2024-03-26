@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  numberDevice: 0,
+  numberDevice: 1,
 };
 
 export const deviceSlice = createSlice({
