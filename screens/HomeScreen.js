@@ -4,7 +4,6 @@ import {
   Text,
   View,
   ScrollView,
-  Switch,
   StatusBar,
   TouchableOpacity,
 } from "react-native";
@@ -46,18 +45,22 @@ const HomeScreen = () => {
 
           <View className="flex-row justify-between items-center gap-x-2 mt-3">
             {/* Humidity */}
-
-            <View className="w-[31%] items-center justify-center shadow-2xl shadow-blue-600 h-[160] bg-[#EF732E] rounded-2xl p-2">
+            <TouchableOpacity
+              className="w-[31%] items-center justify-center shadow-2xl shadow-blue-600 h-[160] bg-[#f18759] rounded-2xl p-2"
+              onPress={() => navigation.navigate("Dashboard")}
+            >
               <View className="items-center justify-center h-[50%] ">
                 <Ionicons name={"water-outline"} color={"white"} size={45} />
               </View>
               <Text className="font-bold text-md  text-white">Humidity</Text>
               <Text className="font-bold text-xl text-white">50 %</Text>
-            </View>
+            </TouchableOpacity>
 
             {/* Temperature */}
-
-            <View className="w-[31%] items-center justify-center shadow-2xl shadow-blue-600 h-[160] bg-[#2E36EF] rounded-2xl p-2">
+            <TouchableOpacity
+              className="w-[31%] items-center justify-center shadow-2xl shadow-blue-600 h-[160] bg-[#874bff] rounded-2xl p-2"
+              onPress={() => navigation.navigate("Dashboard")}
+            >
               <View className="items-center justify-center h-[50%] ">
                 <MaterialCommunityIcons
                   name={"coolant-temperature"}
@@ -67,17 +70,19 @@ const HomeScreen = () => {
               </View>
               <Text className="font-bold text-md text-white">Temperature</Text>
               <Text className="font-bold text-xl text-white">26 oC</Text>
-            </View>
+            </TouchableOpacity>
 
             {/* Light */}
-
-            <View className="w-[31%] items-center justify-center shadow-2xl shadow-blue-600 h-[160] bg-[#4BD158] rounded-2xl p-2">
+            <TouchableOpacity
+              className="w-[31%] items-center justify-center shadow-2xl shadow-blue-600 h-[160] bg-[#F4C427] rounded-2xl p-2"
+              onPress={() => navigation.navigate("Dashboard")}
+            >
               <View className="items-center justify-center h-[50%] ">
                 <Entypo name={"light-up"} color={"white"} size={45} />
               </View>
               <Text className="font-bold text-md text-white">Light </Text>
               <Text className="font-bold text-xl text-white">500 cd</Text>
-            </View>
+            </TouchableOpacity>
           </View>
 
           {/* Devices */}

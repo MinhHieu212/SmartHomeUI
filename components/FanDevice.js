@@ -42,7 +42,7 @@ const FanDevice = ({ fanStatus = false, setFanStatus = () => {} }) => {
           fanStatus ? "text-[white]" : "text-[#3579F9]"
         }`}
       >
-        Living Room Fan
+        LRoom Fan
       </Text>
 
       <View className="flex-row items-center justify-between">
