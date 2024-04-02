@@ -7,19 +7,21 @@ import {
   TouchableOpacity,
   Switch,
   Image,
-  Button,
+  Pressable,
   FlatList,
+  Modal,
 } from "react-native";
 import React, { useState } from "react";
 import Header from "../components/Header";
 import Feather from "react-native-vector-icons/Feather";
 import ScheduleItem from "../components/ScheduleItem";
 import Slider from "@react-native-community/slider";
-import { ScrollView } from 'react-native-virtualized-view'
+import { ScrollView } from "react-native-virtualized-view";
 
 const FanDeviceScreen = () => {
   const [notice, setNotice] = useState(false);
   const [openFan, setOpenFan] = useState(false);
+  const [modalOpen, setModalOpen] = useState(false);
   const [schedule, setSchedule] = useState([
     {
       key: 1,
@@ -72,9 +74,37 @@ const FanDeviceScreen = () => {
       <Header name="Living Room Fan"></Header>
 
       <View className=" h-[50] flex-row-reverse items-center rounded-full mx-3">
-        <TouchableOpacity>
+        <TouchableOpacity onPress={() => setModalOpen(true)}>
           <Feather name="info" className="text-[#2666DE]" size={26} />
         </TouchableOpacity>
+        <Modal
+          animationType="slide"
+          transparent={true}
+          visible={modalOpen}
+          onRequestClose={() => {
+            setModalOpen(!modalOpen);
+          }}
+        >
+          <View className="flex-1 bg-black/[0.5] items-center justify-end">
+            <View className="bg-white rounded-t-2xl justify-center items-center p-3">
+              <Text className="text-lg font-bold text-[#2666DE] mb-3">
+                Fan Automation Mode
+              </Text>
+              <Text className="mb-10 text-lg text-center">
+                The fan will automatically turn on when the temperature ishigher
+                than 20°C.
+              </Text>
+              <View className="flex w-full items-center">
+                <TouchableOpacity
+                  className="bg-[#2666DE] w-full p-3 justify-center items-center rounded-lg "
+                  onPress={() => setModalOpen(false)}
+                >
+                  <Text className=" w-[85vw] justify-center text-center text-lg font-bold text-white">Exit</Text>
+                </TouchableOpacity>
+              </View>
+            </View>
+          </View>
+        </Modal>
       </View>
       <View className="flex-row items-center justify-between rounded-2xl shadow-2x h-[50] bg-[#8AAEEF] mx-3 p-3">
         <Text className="text-lg font-bold text-[#2666DE]">Auto Mode</Text>
