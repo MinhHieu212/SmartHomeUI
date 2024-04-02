@@ -84,7 +84,7 @@ const DoorDeviceScreen = () => {
                 source={require("../assets/icon-park-solid_door-handle.png")}
                 className="w-5 h-7"
               ></Image>
-              <Text className="text-lg font-regular"> Open the door</Text>
+              <Text className="text-lg font-bold text-[#2666DE]"> Open the door</Text>
             </View>
             <Switch
               trackColor={{ false: "#D4E2FD", true: "#2666DE" }}
