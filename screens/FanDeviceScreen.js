@@ -15,7 +15,7 @@ import Header from "../components/Header";
 import Feather from "react-native-vector-icons/Feather";
 import ScheduleItem from "../components/ScheduleItem";
 import Slider from "@react-native-community/slider";
-import { ScrollView } from 'react-native-virtualized-view'
+import { ScrollView } from "react-native-virtualized-view";
 
 const FanDeviceScreen = () => {
   const [notice, setNotice] = useState(false);

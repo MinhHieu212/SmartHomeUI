@@ -9,24 +9,27 @@ import React, { useContext, useState } from "react";
 import { AuthContext } from "../utils/AuthContext";
 import { LeftArrowIcon } from "../assets/Icons";
 import { useNavigation } from "@react-navigation/native";
+import { LoginAPI } from "../apis/loginAPI";
 
 const LoginScreen = () => {
   const navigation = useNavigation();
   const { login } = useContext(AuthContext);
-  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
 
-  const handleLogIn = () => {
-    const data = {
-      userName: username,
-      password: password,
-    };
+  const handleLogIn = async () => {
+    const data = { email, password };
 
-    console.log("data send for login", data);
+    const response = await LoginAPI(data);
 
-    const token = "fake token from get api";
-    // call login function -> change StackNavigation
-    login(token);
+    if (response.data) {
+      setError("");
+      console.log(response.data.email);
+      login(response.data.email);
+    } else {
+      setError("Co loi r ne");
+    }
   };
 
   return (
@@ -44,10 +47,13 @@ const LoginScreen = () => {
         Welcome back! Glad to see you, Again!
       </Text>
       <View className="mt-10">
+        <View className="h-10 justify-center w-[85vw]">
+          <Text className="text-red-500 p-1 justify-center">{error}</Text>
+        </View>
         <TextInput
           placeholder="Enter your account name"
-          onChangeText={setUsername}
-          value={username}
+          onChangeText={setEmail}
+          value={email}
           autoCapitalize="none"
           className="w-[85vw] text-semibold text-[30] border-2 border-black rounded-lg p-3 mb-5"
         />
