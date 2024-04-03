@@ -19,16 +19,17 @@ const LoginScreen = () => {
   const [error, setError] = useState("");
 
   const handleLogIn = async () => {
-    const data = { email, password };
+    const userInfo = { email, password };
 
-    const response = await LoginAPI(data);
+    const response = await LoginAPI(userInfo);
 
     if (response.data) {
-      setError("");
-      console.log(response.data.email);
       login(response.data.email);
+      setError("");
+      setEmail("");
+      setPassword("");
     } else {
-      setError("Co loi r ne");
+      setError("Please try logging in again!");
     }
   };
 
@@ -43,12 +44,12 @@ const LoginScreen = () => {
       </TouchableOpacity>
       <StatusBar barStyle={"opaque"}></StatusBar>
 
-      <Text className="text-3xl font-bold text-black mt-14  mb-5 w-[80vw]">
+      <Text className="text-3xl font-bold text-black mt-14 mb-5 w-[80vw]">
         Welcome back! Glad to see you, Again!
       </Text>
       <View className="mt-10">
         <View className="h-10 justify-center w-[85vw]">
-          <Text className="text-red-500 p-1 justify-center">{error}</Text>
+          <Text className="text-red-500 p-1 justify-center">{error || ""}</Text>
         </View>
         <TextInput
           placeholder="Enter your account name"
