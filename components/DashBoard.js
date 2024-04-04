@@ -4,9 +4,9 @@ import { LineChart } from "react-native-gifted-charts";
 
 const DashBoard = ({ data, name, unit }) => {
   return (
-    <View className="m-2">
-      <Text className="text-3xl font-bold my-5">{name}</Text>
-      <View className="bg-white rounded-3xl flex-1 p-1 items-center w-full justify-center h-[25vh]">
+    <View className="m-2 items-center">
+      <Text className="text-2xl font-bold my-5">{name}</Text>
+      <View className="bg-white rounded-3xl flex-1 p-1 items-center w-[95vw] justify-center h-[25vh]">
         <LineChart
           areaChart
           data={data}
