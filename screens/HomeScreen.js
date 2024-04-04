@@ -71,17 +71,17 @@ const HomeScreen = () => {
   useEffect(() => {
     handleGetAllDevices();
 
-    const interval = setInterval(handleGetAllDevices, 5000);
+    const interval = setInterval(handleGetAllDevices, 10000);
 
     // Clean up the interval on component unmount
     return () => clearInterval(interval);
   }, []);
 
   useEffect(() => {
-    setFanStatus(AllDevicesInfomation[0]?.state);
-    setDoorStatus(AllDevicesInfomation[1]?.state);
-    setLivingRoomLight(AllDevicesInfomation[2]?.state);
-    setChickenLight(AllDevicesInfomation[3]?.state);
+    setFanStatus(AllDevicesInfomation[2]?.state);
+    setDoorStatus(AllDevicesInfomation[3]?.state);
+    setLivingRoomLight(AllDevicesInfomation[0]?.state);
+    setChickenLight(AllDevicesInfomation[1]?.state);
   }, [AllDevicesInfomation]);
 
   // setInterval(handleGetAllDevices, 3000);
