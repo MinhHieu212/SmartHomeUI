@@ -155,7 +155,7 @@ const HomeScreen = () => {
             {/* Door  */}
             <View className="w-[47%]">
               <DeviceItem
-                device_obj={AllDevicesInfomation[1]}
+                device_obj={AllDevicesInfomation[3]}
                 navigateDevices="DoorDevice"
                 status={doorStatus}
                 setStatus={setDoorStatus}
@@ -164,7 +164,7 @@ const HomeScreen = () => {
             {/* Fan  */}
             <View className="w-[47%]">
               <DeviceItem
-                device_obj={AllDevicesInfomation[0]}
+                device_obj={AllDevicesInfomation[2]}
                 navigateDevices="FanDevice"
                 status={fanStatus}
                 setStatus={setFanStatus}
@@ -174,7 +174,7 @@ const HomeScreen = () => {
             {/* Ligh 1 */}
             <View className="w-[47%]">
               <DeviceItem
-                device_obj={AllDevicesInfomation[2]}
+                device_obj={AllDevicesInfomation[0]}
                 navigateDevices=""
                 status={livingRoomLight}
                 setStatus={setLivingRoomLight}
@@ -184,7 +184,7 @@ const HomeScreen = () => {
             {/* Ligh 2 */}
             <View className="w-[47%]">
               <DeviceItem
-                device_obj={AllDevicesInfomation[3]}
+                device_obj={AllDevicesInfomation[1]}
                 navigateDevices=""
                 status={chickenLight}
                 setStatus={setChickenLight}
