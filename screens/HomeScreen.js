@@ -71,7 +71,7 @@ const HomeScreen = () => {
   useEffect(() => {
     handleGetAllDevices();
 
-    const interval = setInterval(handleGetAllDevices, 10000);
+    const interval = setInterval(handleGetAllDevices, 5000);
 
     // Clean up the interval on component unmount
     return () => clearInterval(interval);

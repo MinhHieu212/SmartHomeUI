@@ -57,8 +57,8 @@ const DeviceItem = ({
     setStatus(!status);
     const putData = {
       device_id: device_obj.device_id,
-      state: !status,
-      topic: device_obj.type,
+      state: Number(!status),
+      topic: device_obj.topic,
     };
     const response = await updateDeviceState(putData);
     if (response.data) {
@@ -124,7 +124,7 @@ const DeviceItem = ({
         </View>
       </View>
     </View>
-  );
+  );  
 };
 
 export default DeviceItem;
