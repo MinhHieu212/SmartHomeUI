@@ -23,7 +23,7 @@ const VoiceScreen = () => {
             <ScrollView horizontal>
               <View className=" border-2 p-1 flex-row items-center rounded-2xl mx-3 border-blue-300">
                 <Text className="font-semibold text-blue-400 ">
-                  Turn on the light in the living room
+                  Turn on the light in the living room.
                 </Text>
                 <View className="ml-1">
                   <CloseIcon></CloseIcon>
