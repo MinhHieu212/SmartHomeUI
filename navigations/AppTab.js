@@ -49,7 +49,7 @@ const AppTab = () => {
           left: 5,
           right: 5,
           backgroundColor: "white",
-          height: 70,
+          height: 65,
           borderRadius: 10,
         },
         tabBarInactiveTintColor: "black",
