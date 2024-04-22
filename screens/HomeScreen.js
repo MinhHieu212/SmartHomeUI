@@ -18,6 +18,7 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   setDevicesInfomation,
   setlectAllDevicesInfomation,
+  setlectSingleDeviceInfomation,
 } from "../features/deviceSlice/deviceSlice";
 import DeviceItem from "../components/DeviceItem";
 import { getSensorRecord } from "../apis/sensorAPI";
@@ -40,17 +41,36 @@ const HomeScreen = () => {
   const [doorStatus, setDoorStatus] = useState(false);
   const [fanStatus, setFanStatus] = useState(false);
   const [livingRoomLight, setLivingRoomLight] = useState(false);
-  const [chickenLight, setChickenLight] = useState(false);
+  const [kitchenLight, setKitchenLight] = useState(false);
   const [humidity, setHumidity] = useState(0);
   const [temperature, setTemperature] = useState(0);
-  const [light, setLight] = useState(500);
+  const [light, setLight] = useState(0);
   const AllDevicesInfomation = useSelector(setlectAllDevicesInfomation);
+
+  const FrontDoorInformation = useSelector((state) =>
+    setlectSingleDeviceInfomation(state, "Front Door")
+  );
+  const LivingRoomFanInformation = useSelector((state) =>
+    setlectSingleDeviceInfomation(state, "Living Room Fan")
+  );
+  const LivingRoomLightInformation = useSelector((state) =>
+    setlectSingleDeviceInfomation(state, "Living Room Light")
+  );
+  const KitchenLightInformation = useSelector((state) =>
+    setlectSingleDeviceInfomation(state, "Kitchen Light")
+  );
 
   const handleGetAllDevices = async () => {
     try {
       const response = await getAllDivice();
       dispatch(setDevicesInfomation(response.data));
+    } catch (e) {
+      console.log(`error get all device ${e}`);
+    }
+  };
 
+  const handleGetAllSensorRecord = async () => {
+    try {
       const humidityRes = await getSensorRecord({
         type: "humidity",
         isAll: false,
@@ -61,31 +81,31 @@ const HomeScreen = () => {
         type: "temperature",
         isAll: false,
       });
-
       setTemperature(temperatureRes?.data?.value);
     } catch (e) {
-      console.log(`error get all device ${e}`);
+      console.log(`error get all sensor record ${e}`);
     }
   };
 
   useEffect(() => {
     handleGetAllDevices();
 
-    const interval = setInterval(handleGetAllDevices, 5000);
+    const intervalDevices = setInterval(handleGetAllDevices, 5000);
+    const intervalSensor = setInterval(handleGetAllSensorRecord, 60000);
 
     // Clean up the interval on component unmount
-    return () => clearInterval(interval);
+    return () => {
+      clearInterval(intervalDevices);
+      clearInterval(intervalSensor);
+    };
   }, []);
 
   useEffect(() => {
-    setFanStatus(AllDevicesInfomation[2]?.state);
-    setDoorStatus(AllDevicesInfomation[3]?.state);
-    setLivingRoomLight(AllDevicesInfomation[0]?.state);
-    setChickenLight(AllDevicesInfomation[1]?.state);
+    setFanStatus(LivingRoomFanInformation?.state);
+    setDoorStatus(FrontDoorInformation?.state);
+    setLivingRoomLight(LivingRoomLightInformation?.state);
+    setKitchenLight(KitchenLightInformation?.state);
   }, [AllDevicesInfomation]);
-
-  // setInterval(handleGetAllDevices, 3000);
-  // console.log("++++++++++++++ HOME SCREEN ++++++++++++++");
 
   return (
     <SafeAreaView className="flex-1 bg-white mb-[70]">
@@ -155,7 +175,7 @@ const HomeScreen = () => {
             {/* Door  */}
             <View className="w-[47%]">
               <DeviceItem
-                device_obj={AllDevicesInfomation[3]}
+                device_obj={FrontDoorInformation}
                 navigateDevices="DoorDevice"
                 status={doorStatus}
                 setStatus={setDoorStatus}
@@ -164,7 +184,7 @@ const HomeScreen = () => {
             {/* Fan  */}
             <View className="w-[47%]">
               <DeviceItem
-                device_obj={AllDevicesInfomation[2]}
+                device_obj={LivingRoomFanInformation}
                 navigateDevices="FanDevice"
                 status={fanStatus}
                 setStatus={setFanStatus}
@@ -174,7 +194,7 @@ const HomeScreen = () => {
             {/* Ligh 1 */}
             <View className="w-[47%]">
               <DeviceItem
-                device_obj={AllDevicesInfomation[0]}
+                device_obj={LivingRoomLightInformation}
                 navigateDevices=""
                 status={livingRoomLight}
                 setStatus={setLivingRoomLight}
@@ -184,10 +204,10 @@ const HomeScreen = () => {
             {/* Ligh 2 */}
             <View className="w-[47%]">
               <DeviceItem
-                device_obj={AllDevicesInfomation[1]}
+                device_obj={KitchenLightInformation}
                 navigateDevices=""
-                status={chickenLight}
-                setStatus={setChickenLight}
+                status={kitchenLight}
+                setStatus={setKitchenLight}
               ></DeviceItem>
             </View>
           </View>
