@@ -49,7 +49,7 @@ export const setlectRunningDevicesCount = (state) =>
   state.device.runningDevicesCount;
 
 export const setlectSingleDeviceInfomation = (state, name) =>
-  state.device.devicesInfomation.filter((item) => item.name === name);
+  state.device.devicesInfomation.find((item) => item.name === name);
 
 export const { setDevicesInfomation, updateDevicesInfomation } =
   deviceSlice.actions;

@@ -109,7 +109,7 @@ const HomeScreen = () => {
 
   return (
     <SafeAreaView className="flex-1 bg-white mb-[70]">
-      <StatusBar barStyle={"opaque"}></StatusBar>
+      <StatusBar barStyle={"dark-content"}></StatusBar>
       <Header name="Home"></Header>
       <ScrollView>
         <View className="flex-1 px-3 mt-3 pb-10 ">
