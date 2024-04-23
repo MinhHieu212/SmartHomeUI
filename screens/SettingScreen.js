@@ -33,7 +33,7 @@ const SettingScreen = () => {
 
   return (
     <SafeAreaView className="flex-1 bg-white mb-[70]">
-      <StatusBar barStyle={"opaque"}></StatusBar>
+      <StatusBar barStyle={"opaque"} backgroundColor="black"></StatusBar>
       <Header name="Settings"></Header>
       <View className="flex-1 pb-10 px-3 mt-3 ">
         {/* <ScrollView> */}

@@ -1,5 +1,5 @@
-import { View, Text, TouchableOpacity } from "react-native";
-import React from "react";
+import { View, Text, TouchableOpacity, Pressable } from "react-native";
+import React, { useEffect } from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import HomeStack from "./HomeStack";
 import SettingStack from "./SettingStack";
@@ -7,36 +7,37 @@ import { VoiceScreen } from "../screens";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import FontAwesome from "react-native-vector-icons/FontAwesome";
 import { COLOR } from "../constaints/Color";
+import { useDispatch } from "react-redux";
+import { useNavigation } from "@react-navigation/native";
+import { setVoiceMessage } from "../features/voiceSlice/voiceSlide";
+import { useVoiceRecognation } from "../hooks/useVoiceRecognition";
+
+import { LogBox } from "react-native";
+LogBox.ignoreLogs(["new NativeEventEmitter"]); // Ignore log notification by message
+LogBox.ignoreAllLogs(); //Ignore all log notifications
 
 const Tab = createBottomTabNavigator();
-const CustomTabBarButton = ({ children, onPress }) => {
-  return (
-    <TouchableOpacity
-      style={{
-        top: -30,
-        justifyContent: "center",
-        alignItems: "center",
-        backgroundColor: "#f5f5f5",
-        width: 75,
-        height: 75,
-        borderRadius: 50,
-        shadowColor: COLOR.Blue,
-        shadowOffset: {
-          width: 10,
-          height: 10,
-        },
-        shadowOpacity: 0.3,
-        elevation: 10,
-        shadowRadius: 12,
-      }}
-      onPress={onPress}
-    >
-      {children}
-    </TouchableOpacity>
-  );
-};
 
 const AppTab = () => {
+  const dispatch = useDispatch();
+  const navigation = useNavigation();
+  const { state, startRecognizing, stopRecognizing } = useVoiceRecognation();
+
+  const handleVoicePressIn = () => {
+    startRecognizing();
+    navigation.navigate("Voice");
+  };
+
+  const handleVoicePressOut = () => {
+    stopRecognizing();
+  };
+
+  useEffect(() => {
+    if (state.result.length > 0) {
+      dispatch(setVoiceMessage(state.result[0]));
+    }
+  }, [state.result, dispatch]);
+
   return (
     <Tab.Navigator
       initialRouteName="HomeStack"
@@ -82,7 +83,33 @@ const AppTab = () => {
               />
             </View>
           ),
-          tabBarButton: (props) => <CustomTabBarButton {...props} />,
+          tabBarButton: () => (
+            <TouchableOpacity
+              style={{
+                top: -30,
+                justifyContent: "center",
+                alignItems: "center",
+                backgroundColor: "#f5f5f5",
+                width: 75,
+                height: 75,
+                borderRadius: 50,
+                shadowColor: COLOR.Blue,
+                shadowOffset: {
+                  width: 10,
+                  height: 10,
+                },
+                shadowOpacity: 0.3,
+                elevation: 10,
+                shadowRadius: 12,
+              }}
+              onPressIn={handleVoicePressIn}
+              onPressOut={handleVoicePressOut}
+            >
+              <View className="w-[60] h-[60] items-center justify-center bg-gray-200 rounded-full shadow-lg">
+                <FontAwesome name="microphone" color={COLOR.Blue} size={28} />
+              </View>
+            </TouchableOpacity>
+          ),
         }}
       ></Tab.Screen>
       <Tab.Screen

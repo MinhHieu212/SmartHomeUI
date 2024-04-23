@@ -9,7 +9,7 @@ const Header = ({ name }) => {
   const navigation = useNavigation();
   const runningDevicesCount = useSelector(setlectRunningDevicesCount);
   return (
-    <View className="w-full h-[11vh] bg-white shadow-lg pt-[1vh] shadow-blue-900  rounded-2xl items-center flex-row justify-between px-4">
+    <View className="w-full h-[10vh] bg-white shadow-lg pt-1 shadow-blue-900 rounded-2xl items-center flex-row justify-between px-4">
       <View className="w-[50] h-[50] items-center justify-center rounded-full">
         <View className="w-[43] h-[43] rounded-full shadow-lg">
           <Image
@@ -24,7 +24,7 @@ const Header = ({ name }) => {
           {moment().format("LL")}
         </Text>
         <Text className="text-2xl font-bold">{name}</Text>
-        <View className="flex-1 flex-row items-center mt-[-5] space-x-1">
+        <View className="flex-1 flex-row items-center mt-[-5] space-x-2">
           <View className="bg-[#1BE08D] w-3 h-3 rounded-full"></View>
           <Text className="text-sm text-[#07123C] ">
             {runningDevicesCount} device running

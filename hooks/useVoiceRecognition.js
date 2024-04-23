@@ -89,6 +89,7 @@ export const useVoiceRecognation = () => {
         isRecording: false,
       }));
     };
+
     Voice.onSpeechError = (e) => {
       setState((prevState) => ({
         ...prevState,
@@ -96,6 +97,7 @@ export const useVoiceRecognation = () => {
         isRecording: false,
       }));
     };
+
     Voice.onSpeechResults = (e) => {
       setState((prevState) => ({
         ...prevState,
@@ -103,6 +105,7 @@ export const useVoiceRecognation = () => {
         isRecording: false,
       }));
     };
+
     Voice.onSpeechPartialResults = (e) => {
       setState((prevState) => ({
         ...prevState,
@@ -110,6 +113,7 @@ export const useVoiceRecognation = () => {
         isRecording: false,
       }));
     };
+    
     Voice.onSpeechVolumeChanged = (e) => {
       setState((prevState) => ({
         ...prevState,

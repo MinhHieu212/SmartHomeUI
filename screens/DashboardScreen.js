@@ -65,7 +65,7 @@ const DashboardScreen = () => {
   ];
   return (
     <SafeAreaView className="flex-1 bg-[#EEF5FF] mb-[70]">
-      <StatusBar barStyle={"opaque"}></StatusBar>
+      <StatusBar barStyle={"opaque"} backgroundColor="black"></StatusBar>
       <Header name="Dashboard"></Header>
       <ScrollView>
         <DashBoard data={temperature} name="Temperature" unit="°C"></DashBoard>

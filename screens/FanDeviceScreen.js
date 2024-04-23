@@ -82,9 +82,7 @@ const FanDeviceScreen = () => {
     const pDay = day.toString().padStart(2, "0");
     const time = `${year}-${pMonth}-${pDay}T${value}:00.000Z`;
     setSchedule(
-      schedule.map((item) =>
-        item._id === key ? { ...item, end: time } : item
-      )
+      schedule.map((item) => (item._id === key ? { ...item, end: time } : item))
     );
   };
 
@@ -157,15 +155,17 @@ const FanDeviceScreen = () => {
   };
 
   const handleAddSchedule = async () => {
-    setSchedule([...schedule, {
-      start_schedule_id: "f172a10b-ced7-4109-98d8-1775c4f15d9b",
-      end_schedule_id: "d1481ec6-ec54-4366-98e6-0b7907d4e1c3",
-      start: "2024-04-03T15:04:00.000Z",
-      end: "2024-04-03T15:04:30.000Z",
-      level: 1,
-      _id: Date.now().toString(),
-    },]);
-
+    setSchedule([
+      ...schedule,
+      {
+        start_schedule_id: "f172a10b-ced7-4109-98d8-1775c4f15d9b",
+        end_schedule_id: "d1481ec6-ec54-4366-98e6-0b7907d4e1c3",
+        start: "2024-04-03T15:04:00.000Z",
+        end: "2024-04-03T15:04:30.000Z",
+        level: 1,
+        _id: Date.now().toString(),
+      },
+    ]);
   };
   useEffect(() => {
     getFanInfo();
@@ -187,7 +187,7 @@ const FanDeviceScreen = () => {
 
   return (
     <SafeAreaView className="flex-1 bg-[#EEF5FF] mb-[70]">
-      <StatusBar barStyle={"opaque"}></StatusBar>
+      <StatusBar barStyle={"opaque"} backgroundColor="black"></StatusBar>
       <Header name="Living Room Fan"></Header>
 
       <View className=" h-[50] flex-row-reverse items-center rounded-full mx-3">

@@ -35,14 +35,14 @@ const LoginScreen = () => {
 
   return (
     <View className="flex-1 mt-10 items-center">
-      <StatusBar barStyle={"opaque"}></StatusBar>
+      <StatusBar barStyle={"opaque"} backgroundColor="black"></StatusBar>
       <TouchableOpacity
         className="absolute left-5"
         onPress={() => navigation.goBack()}
       >
         <LeftArrowIcon></LeftArrowIcon>
       </TouchableOpacity>
-      <StatusBar barStyle={"opaque"}></StatusBar>
+      <StatusBar barStyle={"opaque"} backgroundColor="black"></StatusBar>
 
       <Text className="text-3xl font-bold text-black mt-14 mb-5 w-[80vw]">
         Welcome back! Glad to see you, Again!

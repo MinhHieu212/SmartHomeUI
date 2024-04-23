@@ -26,7 +26,7 @@ const WelcomeScreen = ({ navigation }) => {
 
   return (
     <SafeAreaView className="flex-1 bg-[#d3f0f6]">
-      <StatusBar barStyle={"opaque"}></StatusBar>
+      <StatusBar barStyle={"opaque"} backgroundColor="black"></StatusBar>
       <ImageBackground
         source={require("../assets/background.jpg")}
         className="flex-1"

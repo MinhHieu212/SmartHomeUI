@@ -16,7 +16,6 @@ import { getDoor } from "../apis/doorAPI";
 import { updateDeviceState } from "../apis/deviceAPI";
 
 const DoorDeviceScreen = () => {
-
   const [notice, setNotice] = useState(true);
   const [selectedMinute, setSelectedMinute] = useState("1 minute");
   const numbers = Array.from({ length: 60 }, (_, index) => {
@@ -36,7 +35,6 @@ const DoorDeviceScreen = () => {
             (doorInfo.data[0].close_time > 1 ? " minutes" : " minute")
         );
       }
-      
     } catch (error) {
       console.log(error);
     }
@@ -47,7 +45,7 @@ const DoorDeviceScreen = () => {
   }, []);
 
   const handleUpdateNotice = async () => {
-    const prevState=notice;
+    const prevState = notice;
     setNotice(!notice);
     const putData = {
       device_id: 2,
@@ -64,10 +62,9 @@ const DoorDeviceScreen = () => {
       console.log(error);
     }
 
-    if(prevState!==notice){
+    if (prevState !== notice) {
       getDoorInfo();
     }
-
   };
 
   const handleUpdateSelectedMinute = async (itemValue) => {
@@ -106,7 +103,7 @@ const DoorDeviceScreen = () => {
   };
   return (
     <SafeAreaView className="flex-1 bg-[#EEF5FF] mb-[70]">
-      <StatusBar barStyle={"opaque"}></StatusBar>
+      <StatusBar barStyle={"opaque"} backgroundColor="black"></StatusBar>
       <Header name="Front Door"></Header>
       <ScrollView>
         <View className="flex-row items-center justify-between rounded-2xl shadow-2x h-[50] bg-[#8AAEEF] mx-3 my-5 p-3">
@@ -135,7 +132,9 @@ const DoorDeviceScreen = () => {
             <View className="w-[50%] justify-center h-[40] border-2 rounded-xl border-[#2666DE] p-0 m-0">
               <Picker
                 selectedValue={selectedMinute}
-                onValueChange={(itemValue, itemIndex) => handleUpdateSelectedMinute(itemValue)}
+                onValueChange={(itemValue, itemIndex) =>
+                  handleUpdateSelectedMinute(itemValue)
+                }
                 mode="dropdown"
                 dropdownIconColor="#2666DE"
                 dropdownIconRippleColor="#2666DE"
@@ -173,7 +172,7 @@ const DoorDeviceScreen = () => {
               trackColor={{ false: "#D4E2FD", true: "#2666DE" }}
               thumbColor={"#f4f3f4"}
               ios_backgroundColor="#3e3e3e"
-              onValueChange={handleOpenDoor} 
+              onValueChange={handleOpenDoor}
               value={doorOpen}
               style={{ transform: [{ scaleX: 1.3 }, { scaleY: 1.3 }] }}
             />
